@@ -85,25 +85,9 @@
   </div>
 
 <script>
-  const getConfig = async () => {
-  const response = await fetch('/.auth/me'); 
-  if (response.ok) {
-    const authData = await response.json();
-    const environmentVariables = authData?.[0]?.user_claims?.reduce((vars, claim) => {
-      vars[claim.typ] = claim.val;
-      return vars;
-    }, {});
-
-    return {
-      API_URL: environmentVariables?.API_URL || '',
-      API_TOKEN: environmentVariables?.API_TOKEN || '',
-      API_CLIENT_TOKEN: environmentVariables?.API_CLIENT_TOKEN || '',
-    };
-  } else {
-    throw new Error('Unable to fetch configuration variables');
-  }
-};
-
+  const API_URL = "https://autotaskdata.azurewebsites.net/api";
+  const API_TOKEN = "tkRl9P5aXcQ2X-EMozvBD4QZjHxcTCtU0AmzBHxh1MZzAzFu7MpQWA==";
+  const API_CLIENT_TOKEN = "test-token";
 </script>
 
  <script>
