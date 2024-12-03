@@ -84,43 +84,50 @@
     <div id="json-output" class="mt-4"></div>
   </div>
 
+  <script>
+  const API_URL = '%API_URL%';
+  const API_TOKEN = '%API_TOKEN%';
+  const API_CLIENT_TOKEN = '%API_CLIENT_TOKEN%';
+  </script>
+
  <script>
     async function fetchTicketData() {
-      const companyId = document.getElementById('companyId').value;
-      const output = document.getElementById('output');
-      const jsonOutput = document.getElementById('json-output');
-      output.innerHTML = '<div class="loader"></div><p class="text-center">Loading...</p>';
-      jsonOutput.innerHTML = '';
+  const companyId = document.getElementById('companyId').value;
+  const output = document.getElementById('output');
+  const jsonOutput = document.getElementById('json-output');
+  output.innerHTML = '<div class="loader"></div><p class="text-center">Loading...</p>';
+  jsonOutput.innerHTML = '';
 
-      try {
-      if (!process.env.API_URL || !process.env.API_TOKEN || !process.env.API_CLIENT_TOKEN) {
-        throw new Error('Missing required environment variables.');
-      }
-
-      const triggerUrl = `${process.env.API_URL}/http_trigger1?code=${process.env.API_TOKEN}`;
-      const response = await fetch(triggerUrl, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'token': process.env.API_CLIENT_TOKEN,
-        },
-        body: JSON.stringify({
-          company_id: companyId || null,
-        }),
-      });
-
-  if (!response.ok) {
-    throw new Error(`Request failed with status ${response.status}`);
-  }
-
-        const data = await response.json();
-        renderResults(data);
-        renderJson(data);
-      } catch (error) {
-        console.error(error);
-        output.innerHTML = `<p style="color: red; text-align: center;">Failed to fetch data. Please check the Company ID or try again.</p>`;
-      }
+  try {
+    // Use dynamically injected variables
+    if (!API_URL || !API_TOKEN || !API_CLIENT_TOKEN) {
+      throw new Error('Missing required environment variables.');
     }
+
+    const triggerUrl = `${API_URL}/http_trigger1?code=${API_TOKEN}`;
+    const response = await fetch(triggerUrl, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'token': API_CLIENT_TOKEN,
+      },
+      body: JSON.stringify({
+        company_id: companyId || null,
+      }),
+    });
+
+    if (!response.ok) {
+      throw new Error(`Request failed with status ${response.status}`);
+    }
+
+    const data = await response.json();
+    renderResults(data);
+    renderJson(data);
+  } catch (error) {
+    console.error(error);
+    output.innerHTML = `<p style="color: red; text-align: center;">Failed to fetch data. Please check the Company ID or try again.</p>`;
+  }
+}
 
     function renderResults(data) {
       const output = document.getElementById('output');
