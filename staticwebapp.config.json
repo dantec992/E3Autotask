@@ -3,6 +3,7 @@
     {
       "route": "/api/*",
       "headers": {
+        "API_URL": "https://autotaskdata.azurewebsites.net/api",
         "API_TOKEN": "tkRl9P5aXcQ2X-EMozvBD4QZjHxcTCtU0AmzBHxh1MZzAzFu7MpQWA==",
         "API_CLIENT_TOKEN": "test-token"
       },
