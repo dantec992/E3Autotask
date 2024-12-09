@@ -84,6 +84,29 @@
     <div id="json-output" class="mt-4"></div>
   </div>
 
+  <script>
+  async function loadConfig() {
+    const response = await fetch('/api');
+    if (!response.ok) {
+      throw new Error('Failed to load configuration from staticwebapp.config.json');
+    }
+
+    // Extract injected headers from the response
+    const configHeaders = {
+      API_URL: response.headers.get('API_URL'),
+      API_TOKEN: response.headers.get('API_TOKEN'),
+      API_CLIENT_TOKEN: response.headers.get('API_CLIENT_TOKEN'),
+    };
+
+    if (!configHeaders.API_URL || !configHeaders.API_TOKEN || !configHeaders.API_CLIENT_TOKEN) {
+      throw new Error('Missing required API configuration headers');
+    }
+
+    return configHeaders;
+  }
+</script>
+
+
  <script>
     async function fetchTicketData() {
   const companyId = document.getElementById('companyId').value;
