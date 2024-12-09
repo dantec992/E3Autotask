@@ -1,0 +1,12 @@
+{
+  "routes": [
+    {
+      "route": "/api/*",
+      "headers": {
+        "API_TOKEN": "tkRl9P5aXcQ2X-EMozvBD4QZjHxcTCtU0AmzBHxh1MZzAzFu7MpQWA==",
+        "API_CLIENT_TOKEN": "test-token"
+      },
+      "rewrite": "https://autotaskdata.azurewebsites.net/api/*"
+    }
+  ]
+}
