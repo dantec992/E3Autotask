@@ -26,11 +26,11 @@ function displayTickets(tickets) {
         ticketElement.classList.add("ticket");
 
         ticketElement.innerHTML = `
-            <div class="ticket-title">${ticket["Title"]}</div>
+            <div class="ticket-title">#${ticket["Ticket Number"]} - ${ticket["Title"]}</div>
             <div class="ticket-company">📍 ${ticket["Company Name"]}</div>
-            <div class="ticket-meta">🆔 Ticket ID: ${ticket["Ticket ID"]} | 🏷 Status: ${ticket["Status"]}</div>
-            <div class="ticket-meta">🚀 Priority: ${ticket["Priority"]} | 👤 Assigned: ${ticket["Assigned Resource"]}</div>
-            <div class="ticket-meta">📅 Created: ${new Date(ticket["Created Date"]).toLocaleString()}</div>
+            <div class="ticket-meta">🆔 <strong>Ticket ID:</strong> ${ticket["Ticket ID"]} | 🏷 <strong>Status:</strong> ${ticket["Status"]}</div>
+            <div class="ticket-meta">🚀 <strong>Priority:</strong> ${ticket["Priority"]} | 👤 <strong>Assigned:</strong> ${ticket["Assigned Resource"]}</div>
+            <div class="ticket-meta">📅 <strong>Created:</strong> ${new Date(ticket["Created Date"]).toLocaleString()}</div>
             <div class="ticket-description">✍️ ${ticket["Description"] || "No description provided."}</div>
         `;
 
