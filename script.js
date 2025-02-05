@@ -1,4 +1,4 @@
-const API_URL = "https://oncall-e3it.azurewebsites.net/api/http_trigger1?";
+const API_URL = "https://oncall-e3it.azurewebsites.net/api/oncall_tickets?";
 
 async function fetchOnCallTickets() {
     try {
