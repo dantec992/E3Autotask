@@ -1,5 +1,5 @@
 const API_URL = "https://oncall-e3it.azurewebsites.net/api/oncall_tickets";
-const ADD_TIME_ENTRY_URL = "https://oncall-e3it.azurewebsites.net/api/add_time_entry";
+const ADD_TIME_ENTRY_URL = "https://oncall-e3it.azurewebsites.net/api/oncall_tickets";
 
 async function fetchOnCallTickets() {
     try {
