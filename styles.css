@@ -69,3 +69,50 @@ h1 {
     font-size: 0.9rem;
     line-height: 1.4;
 }
+
+/* Time Entry Section */
+.time-entry-section {
+    background-color: #222;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 2px 2px 10px rgba(255, 255, 255, 0.1);
+    margin-top: 20px;
+    text-align: center;
+}
+
+.time-entry-section h2 {
+    font-size: 1.5rem;
+    color: #ffcc00;
+}
+
+.time-entry-section label {
+    display: block;
+    font-size: 1rem;
+    margin: 10px 0 5px;
+}
+
+.time-entry-section input {
+    width: 80%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #444;
+    background-color: #333;
+    color: #fff;
+    font-size: 1rem;
+}
+
+.time-entry-section button {
+    background-color: #ff5f5f;
+    color: white;
+    padding: 10px 15px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.time-entry-section button:hover {
+    background-color: #ff3333;
+}
