@@ -27,10 +27,10 @@ function displayTickets(tickets) {
         ticketElement.classList.add("ticket");
 
         ticketElement.innerHTML = `
-            <div class="ticket-title">
-                <input type="radio" name="selected_ticket" value="${ticket["Ticket ID"]}" class="ticket-select">
+            <label>
+                <input type="radio" name="selected_ticket" value="${ticket["Ticket ID"]}">
                 #${ticket["Ticket Number"]} - ${ticket["Title"]}
-            </div>
+            </label>
             <div class="ticket-company">📍 ${ticket["Company Name"]}</div>
             <div class="ticket-meta">🆔 <strong>Ticket ID:</strong> ${ticket["Ticket ID"]} | 🏷 <strong>Status:</strong> ${ticket["Status"]}</div>
             <div class="ticket-meta">🚀 <strong>Priority:</strong> ${ticket["Priority"]} | 👤 <strong>Assigned:</strong> ${ticket["Assigned Resource"]}</div>
@@ -40,12 +40,6 @@ function displayTickets(tickets) {
 
         ticketContainer.appendChild(ticketElement);
     });
-
-    const submitButton = document.createElement("button");
-    submitButton.innerText = "📝 Add Time Entry";
-    submitButton.classList.add("submit-btn");
-    submitButton.onclick = submitTimeEntry;
-    ticketContainer.appendChild(submitButton);
 }
 
 async function submitTimeEntry() {
@@ -57,7 +51,7 @@ async function submitTimeEntry() {
     }
 
     const ticketId = selectedTicket.value;
-    const description = prompt("Enter work description:");
+    const description = document.getElementById("timeEntryDescription").value;
 
     if (!description) {
         alert("⚠️ Description is required.");
@@ -86,5 +80,8 @@ async function submitTimeEntry() {
     }
 }
 
+document.getElementById("submitTimeEntry").addEventListener("click", submitTimeEntry);
+
+// Fetch tickets on page load and refresh every 60 seconds
 fetchOnCallTickets();
 setInterval(fetchOnCallTickets, 60000);
