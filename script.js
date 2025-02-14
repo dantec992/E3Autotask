@@ -1,5 +1,4 @@
 const API_URL = "https://oncall-e3it.azurewebsites.net/api/oncall_tickets";
-const ADD_TIME_ENTRY_URL = "https://oncall-e3it.azurewebsites.net/api/add_time_entry";
 
 async function fetchOnCallTickets() {
     try {
@@ -41,46 +40,6 @@ function displayTickets(tickets) {
         ticketContainer.appendChild(ticketElement);
     });
 }
-
-async function submitTimeEntry() {
-    const selectedTicket = document.querySelector("input[name='selected_ticket']:checked");
-
-    if (!selectedTicket) {
-        alert("⚠️ Please select a ticket before adding a time entry.");
-        return;
-    }
-
-    const ticketId = selectedTicket.value;
-    const description = document.getElementById("timeEntryDescription").value;
-
-    if (!description) {
-        alert("⚠️ Description is required.");
-        return;
-    }
-
-    const payload = {
-        ticket_id: ticketId,
-        description: description,
-        hours_worked: 1.0
-    };
-
-    try {
-        const response = await fetch(ADD_TIME_ENTRY_URL, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(payload)
-        });
-
-        if (!response.ok) throw new Error("Failed to add time entry");
-
-        alert("✅ Time entry added successfully!");
-        fetchOnCallTickets();
-    } catch (error) {
-        alert("⚠️ Failed to add time entry. Please try again.");
-    }
-}
-
-document.getElementById("submitTimeEntry").addEventListener("click", submitTimeEntry);
 
 // Fetch tickets on page load and refresh every 60 seconds
 fetchOnCallTickets();
