@@ -44,7 +44,7 @@ function displayTickets(tickets) {
             <div class="ticket-meta">📅 <strong>Created:</strong> ${new Date(ticket["Created Date"]).toLocaleString()}</div>
             <div class="ticket-description">
                 ✍️ <span class="desc-text">${shortDescription}</span>
-                ${description.length > 350 ? `<button class="show-more">Show More</button>` : ""}
+                ${description.length > 350 ? `<button class="show-more" data-full-description="${description}">Show More</button>` : ""}
             </div>
         `;
 
@@ -53,11 +53,10 @@ function displayTickets(tickets) {
 
     document.querySelectorAll(".show-more").forEach(button => {
         button.addEventListener("click", function () {
-            const parent = this.parentElement;
-            const descText = parent.querySelector(".desc-text");
+            const descText = this.parentElement.querySelector(".desc-text");
 
             if (this.textContent === "Show More") {
-                descText.textContent = tickets.find(ticket => ticket["Description"] === descText.textContent.slice(0, 350) + "...")["Description"];
+                descText.textContent = this.getAttribute("data-full-description");
                 this.textContent = "Show Less";
             } else {
                 descText.textContent = descText.textContent.substring(0, 350) + "...";
@@ -67,6 +66,5 @@ function displayTickets(tickets) {
     });
 }
 
-// Fetch tickets on page load and refresh every 60 seconds
 fetchOnCallTickets();
 setInterval(fetchOnCallTickets, 60000);
