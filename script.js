@@ -7,17 +7,19 @@ async function fetchOnCallTickets() {
 
         const data = await response.json();
         displayTickets(data);
+        updateTicketCount(data.length); 
     } catch (error) {
         document.getElementById("tickets").innerHTML = `<p class="error">⚠️ Failed to load tickets. Please try again later.</p>`;
     }
 }
 
+function updateTicketCount(count) {
+    document.getElementById("ticket-count").textContent = count;
+}
+
 function displayTickets(tickets) {
     const ticketContainer = document.getElementById("tickets");
-    const ticketCount = document.getElementById("ticket-count");
-    
     ticketContainer.innerHTML = ""; 
-    ticketCount.textContent = tickets.length; 
 
     if (tickets.length === 0) {
         ticketContainer.innerHTML = `<p>No on-call tickets at the moment. 🎉</p>`;
@@ -49,7 +51,6 @@ function displayTickets(tickets) {
         ticketContainer.appendChild(ticketElement);
     });
 
-    // Add event listener to "Show More" buttons
     document.querySelectorAll(".show-more").forEach(button => {
         button.addEventListener("click", function () {
             const parent = this.parentElement;
@@ -65,3 +66,7 @@ function displayTickets(tickets) {
         });
     });
 }
+
+// Fetch tickets on page load and refresh every 60 seconds
+fetchOnCallTickets();
+setInterval(fetchOnCallTickets, 60000);
