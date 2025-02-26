@@ -136,16 +136,14 @@ h1 {
 
 @media screen and (min-width: 1024px) {
     .ticket-list {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr); 
-        gap: 20px; 
-        align-items: stretch; 
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: 15px;
     }
 
     .ticket {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        min-height: 200px; 
+        width: calc(33.333% - 15px); /* Ensures 3 tickets per row */
+        min-height: 200px;
     }
 }
