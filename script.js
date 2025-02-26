@@ -43,8 +43,8 @@ function displayTickets(tickets) {
             <div class="ticket-meta">🚀 <strong>Priority:</strong> ${ticket["Priority"]} | 👤 <strong>Assigned:</strong> ${ticket["Assigned Resource"]}</div>
             <div class="ticket-meta">📅 <strong>Created:</strong> ${new Date(ticket["Created Date"]).toLocaleString()}</div>
             <div class="ticket-description">
-                ✍️ <span class="desc-text">${shortDescription}</span>
-                ${description.length > 350 ? `<button class="show-more" data-full-description="${description}">Show More</button>` : ""}
+                ✍️ <span class="desc-text" data-short-description="${shortDescription}" data-full-description="${description}">${shortDescription}</span>
+                ${description.length > 350 ? `<button class="show-more">Show More</button>` : ""}
             </div>
         `;
 
@@ -56,15 +56,16 @@ function displayTickets(tickets) {
             const descText = this.parentElement.querySelector(".desc-text");
 
             if (this.textContent === "Show More") {
-                descText.textContent = this.getAttribute("data-full-description");
+                descText.textContent = descText.getAttribute("data-full-description");
                 this.textContent = "Show Less";
             } else {
-                descText.textContent = descText.textContent.substring(0, 350) + "...";
+                descText.textContent = descText.getAttribute("data-short-description");
                 this.textContent = "Show More";
             }
         });
     });
 }
 
+// Fetch tickets on page load and refresh every 60 seconds
 fetchOnCallTickets();
 setInterval(fetchOnCallTickets, 60000);
