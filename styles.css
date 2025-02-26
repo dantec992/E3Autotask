@@ -138,6 +138,14 @@ h1 {
     .ticket-list {
         display: grid;
         grid-template-columns: repeat(3, 1fr); 
-        gap: 15px;
+        gap: 20px; 
+        align-items: stretch; 
+    }
+
+    .ticket {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        min-height: 200px; 
     }
 }
