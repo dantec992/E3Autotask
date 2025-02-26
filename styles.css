@@ -138,12 +138,24 @@ h1 {
     .ticket-list {
         display: flex;
         flex-wrap: wrap;
-        justify-content: space-between;
+        justify-content: space-between; 
         gap: 15px;
     }
 
     .ticket {
-        width: calc(33.333% - 15px); /* Ensures 3 tickets per row */
-        min-height: 200px;
+        flex: 1 1 calc(33.333% - 15px); 
+        display: flex;
+        flex-direction: row; 
+        align-items: center; 
+        padding: 15px;
+        min-height: auto; 
+        box-sizing: border-box;
+    }
+
+    .ticket-description {
+        flex-grow: 1;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap; 
     }
 }
