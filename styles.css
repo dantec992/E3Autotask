@@ -133,29 +133,3 @@ h1 {
     border-radius: 50%;
     box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
 }
-
-@media screen and (min-width: 1024px) {
-    .ticket-list {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-between; 
-        gap: 15px;
-    }
-
-    .ticket {
-        flex: 1 1 calc(33.333% - 15px); 
-        display: flex;
-        flex-direction: row; 
-        align-items: center; 
-        padding: 15px;
-        min-height: auto; 
-        box-sizing: border-box;
-    }
-
-    .ticket-description {
-        flex-grow: 1;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap; 
-    }
-}
