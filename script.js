@@ -43,8 +43,8 @@ function displayTickets(tickets) {
             <div class="ticket-meta">🚀 <strong>Priority:</strong> ${ticket["Priority"]} | 👤 <strong>Assigned:</strong> ${ticket["Assigned Resource"]}</div>
             <div class="ticket-meta">📅 <strong>Created:</strong> ${new Date(ticket["Created Date"]).toLocaleString()}</div>
             <div class="ticket-description">
-                ✍️ <span class="desc-text" data-short-description="${shortDescription}" data-full-description="${description}">${shortDescription}</span>
-                ${description.length > 350 ? `<button class="show-more">Show More</button>` : ""}
+                ✍️ <span class="desc-text">${shortDescription}</span>
+                ${description.length > 350 ? `<button class="show-more" data-short="${shortDescription}" data-full="${description}">Show More</button>` : ""}
             </div>
         `;
 
@@ -54,18 +54,18 @@ function displayTickets(tickets) {
     document.querySelectorAll(".show-more").forEach(button => {
         button.addEventListener("click", function () {
             const descText = this.parentElement.querySelector(".desc-text");
+            const isExpanded = this.textContent === "Show Less";
 
-            if (this.textContent === "Show More") {
-                descText.textContent = descText.getAttribute("data-full-description");
-                this.textContent = "Show Less";
-            } else {
-                descText.textContent = descText.getAttribute("data-short-description");
+            if (isExpanded) {
+                descText.textContent = this.getAttribute("data-short");
                 this.textContent = "Show More";
+            } else {
+                descText.textContent = this.getAttribute("data-full");
+                this.textContent = "Show Less";
             }
         });
     });
 }
 
-// Fetch tickets on page load and refresh every 60 seconds
 fetchOnCallTickets();
 setInterval(fetchOnCallTickets, 60000);
