@@ -135,7 +135,9 @@ h1 {
 }
 
 .customer-note-button {
-    background-color: #007BFF;
+    background: linear-gradient(270deg, #007BFF, #0056b3, #003f7f);
+    background-size: 600% 600%;
+    animation: gradientAnimation 8s ease infinite;
     color: #ffffff;
     padding: 0.5em 1em;
     border: none;
@@ -146,5 +148,17 @@ h1 {
 }
 
 .customer-note-button:hover {
-    background-color: #0056b3;
+    animation: gradientAnimation 3s ease infinite;
+}
+
+@keyframes gradientAnimation {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
 }
